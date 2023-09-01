@@ -1,16 +1,37 @@
 from node import Node
 
 class Queue:
+<<<<<<< HEAD
   def __init__(self):
     self.head = None
     self.tail = None
+=======
+  def __init__(self, max_size = None):
+    self.head = None
+    self.tail = None
+    # self.max_size = max_size
+>>>>>>> 406fda68b6468aaae82fab490c457400d8c5df0b
     self.size = 0
     
   def enqueue(self, value):
     item_to_add = Node(value)
 
     # Add code below
+<<<<<<< HEAD
     
+=======
+    # if self.has_space():
+    if self.is_empty():
+      self.head = item_to_add
+      self.tail = item_to_add
+      self.size += 1
+    else:
+      self.tail.set_next_node(item_to_add)
+      self.tail = item_to_add
+      self.size += 1
+    # else:
+    #   print("Sorry! We don't have enough place")
+>>>>>>> 406fda68b6468aaae82fab490c457400d8c5df0b
          
   def dequeue(self):
     if self.is_empty():
@@ -37,6 +58,15 @@ class Queue:
     
   def is_empty(self):
     return self.size == 0
+<<<<<<< HEAD
+=======
+
+  # def has_space(self):
+  #   if self.head is None:
+  #     return True
+  #   else:
+  #     return self.max_size > self.size
+>>>>>>> 406fda68b6468aaae82fab490c457400d8c5df0b
   
 q = Queue()
 print("Enqueue value: 1")
