@@ -56,12 +56,12 @@ def save():
                 with open('password.json', 'w') as data_file:
                     json.dump(new_data, data_file, indent = 4)
                 
-            else:       
+            else:      
                 # Updating old data with new data
-                data.update(new_data)
+                data[website] = new_data[website]
             # Saving updated data
                 with open('password.json', 'w') as data_file:
-                    json.dump(new_data, data_file, indent=4)
+                    json.dump(data, data_file, indent=4)
             # insert new records to txt file
             finally:
                 website_entry.delete(0, END)
@@ -87,6 +87,44 @@ def search():
             messagebox.showinfo(title = website, message = f"Email: {email} \nPassword: {password}")
         else:
             messagebox.showinfo(title = 'Error', message = f"No data for {website} exists")
+
+
+
+
+import tkinter as tk
+from tkinter import ttk
+from tkinter import messagebox
+
+
+# # ADDED
+# def copy_account_to_clipboard():
+#     text_to_copy = website_entry.get()
+#     if text_to_copy:
+#         window.clipboard_clear()  # Clear the clipboard
+#         window.clipboard_append(text_to_copy)  # Copy the text to the clipboard
+#         window.update()  # Update the clipboard
+#         show_copy_popup()
+#     else:
+#         messagebox.showwarning("Clipboard Copy", "No text to copy.")
+
+# def show_copy_popup():
+#     popup = tk.Toplevel(window)
+#     popup.title("Clipboard Copy")
+    
+#     label = ttk.Label(popup, text="Text copied to clipboard.")
+#     label.pack(padx=20, pady=10)
+    
+#     ok_button = ttk.Button(popup, text="OK", command=popup.destroy)
+#     ok_button.pack(pady=10)
+    
+#     # Position the popup in the center of the screen
+#     popup.geometry("+{}+{}".format(root.winfo_screenwidth() // 2 - popup.winfo_reqwidth() // 2,
+#                                    root.winfo_screenheight() // 2 - popup.winfo_reqheight() // 2))
+#     popup.transient(root)  # Make the popup window transient (closes when main window closes)
+#     popup.grab_set()  # Grab focus on the popup
+#     root.wait_window(popup)  # Wait for the popup window to be closed
+
+            
 # ---------------------------- UI SETUP ------------------------------- #
 
 
@@ -165,4 +203,14 @@ add_button = Button(text="Add", width=33, font={'arial', 9}, command=save)
 add_button.grid(row=4, column=1, columnspan=2)
 search_button = Button(text="Search", font={'arial', 9}, command=search)
 search_button.grid(row=1, column=2)
+
+# copy email button
+# copy_account_button = Button(text="Copy password to Clipboard", command=copy_to_clipboard)
+
+
+# copy password button
+# copy_pass_button = Button(text="Copy pawword to Clipboard", command=copy_to_clipboard)
+
+
+
 window.mainloop()
